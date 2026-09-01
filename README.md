@@ -47,4 +47,5 @@ The complete checksum-locked alpha train, including Bitcoin, EVM, TON,
 Cardano, MPC, CometBFT, gRPC, and crypto dependencies, is documented in the
 [public overlay](https://github.com/reuna-labs/opam-repository).
 
-Security reports belong at `security@reuna.io`, not in a public issue.
+Security reports belong at `security@reuna.io`, not in a public issue. See
+[`SECURITY.md`](SECURITY.md).
