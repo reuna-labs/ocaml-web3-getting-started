@@ -1,0 +1,31 @@
+name: test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ocaml-compiler:
+          - 4.14.2
+          - 5.2.1
+          - 5.5.0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}
+      - name: Install from the public overlay
+        run: |
+          opam repository add reuna https://github.com/reuna-labs/opam-repository.git
+          opam install --yes --assume-depexts dune solana cosmos tron
+      - run: opam exec -- dune build @all
+      - run: opam exec -- dune exec ./main.exe

@@ -1,0 +1,6 @@
+(executable
+ (name main)
+ (libraries
+  cosmos
+  solana
+  tron))
